@@ -17,7 +17,6 @@ with open(filepath, newline = '') as csvreader:
     #    print(row)
 
     # Initialize variables
-    iterator = 1 # tracks loop iteration
     numMonths = 0 # total number of months
     profitLoss = 0 # total profit/loss
     lastPL = 0 # stores previous profit/loss
@@ -30,21 +29,18 @@ with open(filepath, newline = '') as csvreader:
     
     # Collect data for financial analysis summary
     for row in budgetData:
-        numMonths = numMonths + 1
         profitLoss = profitLoss + int(row[1])
         diff = int(row[1]) - lastPL
-        if iterator > 1:
+        if numMonths > 0:
             plChanges.append(diff)
-        if int(row[1]) > hiChange:
-            if iterator > 1:
+            if int(row[1]) > hiChange:
                 hiChange = int(row[1]) - lastPL
                 hiMonth = row[0]
-        if int(row[1]) < loChange:
-            if iterator > 1:
+            if int(row[1]) < loChange:
                 loChange = int(row[1]) - lastPL
                 loMonth = row[0]
         lastPL = int(row[1])
-        iterator = iterator + 1
+        numMonths = numMonths + 1
 
 # Print summary output
 print(f"Financial Analysis\n\
