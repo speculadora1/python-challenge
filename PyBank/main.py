@@ -40,7 +40,7 @@ with open(filepath, newline = '') as csvreader:
                 loChange = int(row[1]) - lastPL
                 loMonth = row[0]
         lastPL = int(row[1])
-        numMonths = numMonths + 1
+        numMonths += 1
 
 # Print summary output
 print(f"Financial Analysis\n\
